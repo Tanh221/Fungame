@@ -1,0 +1,204 @@
+/* =============================================
+   AuthPages.css — Login & Register shared styles
+   Color palette:
+     #F7F9F9  background
+     #57A773  green  (Register accent)
+     #3185FC  blue   (Login accent)
+     #D16014  orange
+     #F5B700  yellow
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+:root {
+  --bg:       #F7F9F9;
+  --green:    #57A773;
+  --blue:     #3185FC;
+  --orange:   #D16014;
+  --yellow:   #F5B700;
+  --white:    #ffffff;
+  --text:     #2d2d2d;
+  --label:    #444444;
+  --placeholder: #aaaaaa;
+  --border:   #e0e4e8;
+  --shadow:   0 4px 24px rgba(0, 0, 0, 0.08);
+  --radius:   14px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ── Background ── */
+.auth-bg {
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* ── Card ── */
+.auth-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 40px 48px;
+  width: 100%;
+  max-width: 400px;
+  animation: cardIn 0.35s ease;
+}
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+/* ── Header ── */
+.auth-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.auth-logo {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.auth-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--blue);
+  display: inline;
+}
+
+.auth-title--green {
+  color: var(--green);
+}
+
+.auth-subtitle {
+  margin-top: 6px;
+  font-size: 0.92rem;
+  color: #888;
+  font-weight: 500;
+}
+
+/* ── Form ── */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-field label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--label);
+}
+
+.auth-input {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-family: 'Nunito', sans-serif;
+  color: var(--text);
+  background: var(--white);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.auth-input::placeholder {
+  color: var(--placeholder);
+}
+
+.auth-input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(49, 133, 252, 0.12);
+}
+
+/* ── Buttons ── */
+.auth-btn {
+  width: 100%;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  color: var(--white);
+  cursor: pointer;
+  margin-top: 4px;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.auth-btn:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.auth-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.auth-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.auth-btn--blue  { background: var(--blue);  }
+.auth-btn--green { background: var(--green); }
+
+/* ── Switch link ── */
+.auth-switch {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 0.88rem;
+  color: #777;
+}
+
+.auth-link--green { color: var(--green); font-weight: 700; text-decoration: none; }
+.auth-link--blue  { color: var(--blue);  font-weight: 700; text-decoration: none; }
+
+.auth-link--green:hover,
+.auth-link--blue:hover {
+  text-decoration: underline;
+}
+
+/* ── Messages ── */
+.auth-error {
+  background: #fff0f0;
+  border: 1px solid #ffcccc;
+  color: #c0392b;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.auth-success {
+  background: #f0fff4;
+  border: 1px solid #b2f0c8;
+  color: #27ae60;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  font-weight: 600;
+}

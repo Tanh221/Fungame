@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+.nono-container {
+  display: flex; align-items: flex-start; gap: 24px;
+  padding: 16px; font-family: 'Nunito', sans-serif;
+  justify-content: center; flex-wrap: wrap; width: 100%;
+}
+
+/* ── Loading ── */
+.nono-loading {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 14px; padding: 60px; color: #888; font-weight: 600;
+  font-family: 'Nunito', sans-serif;
+}
+.nono-spinner {
+  width: 36px; height: 36px; border: 3px solid #e0e4e8;
+  border-top-color: #3185FC; border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Game area ── */
+.nono-game { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+
+/* ── Topbar ── */
+.nono-topbar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+.nono-stat {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  background: #f5f7fa; border-radius: 8px; padding: 6px 14px;
+}
+.nono-stat__label { font-size: 0.7rem; font-weight: 700; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; }
+.nono-stat__value { font-size: 1rem; font-weight: 800; color: #1a1a1a; }
+
+/* ── Mode Switch ── */
+.nono-mode-switch {
+  display: flex;
+  border: 1.5px solid #e0e4e8;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.nono-mode-btn {
+  padding: 7px 14px;
+  border: none;
+  background: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  color: #888;
+  transition: background 0.15s, color 0.15s;
+}
+
+.nono-mode-btn + .nono-mode-btn {
+  border-left: 1.5px solid #e0e4e8;
+}
+
+.nono-mode-btn--active {
+  background: var(--mode-color, #3185FC);
+  color: #fff;
+}
+
+.nono-reset-btn {
+  background: #f5f7fa; border: none; border-radius: 8px;
+  padding: 8px 14px; font-size: 0.85rem; font-weight: 700;
+  font-family: 'Nunito', sans-serif; color: #555; cursor: pointer;
+  transition: background 0.2s;
+}
+.nono-reset-btn:hover { background: #e8eaed; }
+
+.nono-mode-hint {
+  font-size: 0.78rem; color: #aaa; font-weight: 600;
+}
+
+/* ── Board ── */
+.nono-board-wrapper {
+  display: grid;
+  grid-template-columns: auto repeat(var(--size), 36px);
+  gap: 0;
+  border: 2px solid #bbada0;
+  border-radius: 6px;
+  overflow: hidden;
+  background: #f8f9fa;
+}
+
+.nono-corner {
+  background: #f0f0f0;
+  border-right: 2px solid #bbada0;
+  border-bottom: 2px solid #bbada0;
+}
+
+.nono-col-clues { display: contents; }
+
+.nono-clue--col {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-end;
+  padding: 4px 2px; background: #f0f0f0;
+  border-right: 1px solid #ddd;
+  border-bottom: 2px solid #bbada0;
+  min-height: 48px;
+}
+
+.nono-row { display: contents; }
+
+.nono-clue--row {
+  display: flex; flex-direction: row;
+  align-items: center; justify-content: flex-end;
+  gap: 3px; padding: 2px 6px; background: #f0f0f0;
+  border-right: 2px solid #bbada0;
+  border-bottom: 1px solid #ddd;
+  min-width: 48px;
+}
+
+.nono-clue__num { font-size: 0.75rem; font-weight: 800; color: #444; line-height: 1.2; }
+
+/* ── Cells ── */
+.nono-cell {
+  width: 36px; height: 36px;
+  border: none;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  transition: background 0.1s, transform 0.05s;
+  position: relative;
+  outline: none;
+}
+
+.nono-cell:hover:not(:disabled) { background: #e8f0fe; transform: scale(0.95); }
+
+.nono-cell--filled { background: var(--accent, #3185FC) !important; }
+.nono-cell--filled:hover:not(:disabled) { opacity: 0.85; transform: scale(0.95); }
+
+.nono-cell--crossed { background: #f8f9fa !important; }
+.nono-cell--crossed::after {
+  content: '✕';
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem; color: #bbb; font-weight: 800;
+}
+
+.nono-cell--section-right  { border-right:  2px solid #bbada0 !important; }
+.nono-cell--section-bottom { border-bottom: 2px solid #bbada0 !important; }
+.nono-cell:disabled { cursor: default; }
+
+/* ── Info Panel ── */
+.nono-info-panel { width: 220px; flex-shrink: 0; display: flex; flex-direction: column; gap: 10px; }
+
+.nono-info-card {
+  border: 2px solid #ccc; border-radius: 12px;
+  overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.08); background: #fff;
+}
+.nono-info-header { padding: 10px 16px; }
+.nono-info-badge  { font-size: 0.88rem; font-weight: 800; color: #fff; }
+
+.nono-info-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 8px; }
+.nono-info-label { font-size: 0.75rem; font-weight: 800; color: #aaa; text-transform: uppercase; letter-spacing: 0.06em; }
+.nono-info-desc  { font-size: 0.8rem; color: #666; font-weight: 600; line-height: 1.5; }
+.nono-info-divider { height: 1px; background: #f0f0f0; margin: 2px 0; }
+
+.nono-diff-row { display: flex; align-items: center; gap: 8px; padding: 4px 6px; border-radius: 6px; }
+.nono-diff-row--active { background: #f8f9fa; }
+.nono-diff-dot  { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.nono-diff-name { font-size: 0.82rem; font-weight: 800; min-width: 52px; }
+.nono-diff-size { font-size: 0.78rem; color: #888; font-weight: 600; }
+
+.nono-hint-btn {
+  width: 100%; padding: 12px; border: 2px solid; border-radius: 10px;
+  background: #fff; font-size: 0.92rem; font-weight: 700;
+  font-family: 'Nunito', sans-serif; cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+.nono-hint-btn:hover:not(:disabled) { background: #f0f6ff; }
+.nono-hint-btn:disabled { opacity: 0.4; cursor: not-allowed; }

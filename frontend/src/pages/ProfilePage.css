@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Nunito', sans-serif; background: #F7F9F9; }
+.prof-bg { min-height: 100vh; background: #F7F9F9; }
+
+.prof-navbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: 60px; background: #fff; border-bottom: 1px solid #e8eaed;
+}
+.prof-navbar__brand { display: flex; align-items: center; gap: 8px; font-size: 1.3rem; font-weight: 800; }
+.prof-navbar__title { color: #3185FC; }
+.prof-back-btn {
+  background: #3185FC; color: #fff; border: none; border-radius: 8px;
+  padding: 8px 18px; font-size: 0.92rem; font-weight: 700;
+  font-family: 'Nunito', sans-serif; cursor: pointer; transition: opacity 0.2s;
+}
+.prof-back-btn:hover { opacity: 0.85; }
+.prof-loading { text-align: center; padding: 80px; color: #888; font-weight: 600; }
+
+.prof-content { max-width: 960px; margin: 0 auto; padding: 32px 24px; display: flex; flex-direction: column; gap: 24px; }
+
+/* ── Profile Card ── */
+.prof-card {
+  background: #fff; border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07); padding: 28px 32px;
+  animation: cardIn 0.35s ease;
+}
+.prof-card__top { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 28px; }
+.prof-avatar {
+  width: 68px; height: 68px; border-radius: 50%; background: #e8edf5;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.8rem; font-weight: 800; color: #3185FC; flex-shrink: 0;
+}
+.prof-info { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+.prof-name   { font-size: 1.4rem; font-weight: 800; color: #1a1a1a; }
+.prof-email  { font-size: 0.88rem; color: #777; font-weight: 600; }
+.prof-gender { font-size: 0.85rem; color: #999; font-weight: 600; text-transform: capitalize; }
+.prof-since  { font-size: 0.82rem; color: #aaa; font-weight: 600; margin-top: 2px; }
+
+.prof-card__actions { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+.prof-edit-btn {
+  background: #3185FC; color: #fff; border: none; border-radius: 8px;
+  padding: 9px 18px; font-size: 0.9rem; font-weight: 700;
+  font-family: 'Nunito', sans-serif; cursor: pointer; white-space: nowrap; transition: opacity 0.2s;
+}
+.prof-edit-btn:hover { opacity: 0.85; }
+.prof-save-btn {
+  background: #57A773; color: #fff; border: none; border-radius: 8px;
+  padding: 9px 18px; font-size: 0.9rem; font-weight: 700;
+  font-family: 'Nunito', sans-serif; cursor: pointer; white-space: nowrap; transition: opacity 0.2s;
+}
+.prof-save-btn:hover:not(:disabled) { opacity: 0.85; }
+.prof-save-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+.prof-cancel-btn {
+  background: #f5f5f5; color: #555; border: none; border-radius: 8px;
+  padding: 9px 18px; font-size: 0.9rem; font-weight: 700;
+  font-family: 'Nunito', sans-serif; cursor: pointer; transition: background 0.2s;
+}
+.prof-cancel-btn:hover { background: #ebebeb; }
+
+.prof-edit-form { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+.prof-edit-field { display: flex; flex-direction: column; gap: 4px; }
+.prof-edit-label { font-size: 0.82rem; font-weight: 700; color: #555; }
+.prof-edit-input {
+  padding: 9px 12px; border: 1.5px solid #e0e4e8; border-radius: 8px;
+  font-size: 0.92rem; font-family: 'Nunito', sans-serif; color: #1a1a1a;
+  outline: none; transition: border-color 0.2s;
+}
+.prof-edit-input:focus { border-color: #3185FC; }
+.prof-edit-error { font-size: 0.82rem; color: #c0392b; font-weight: 600; }
+
+/* ── Stats ── */
+.prof-stats {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  border-top: 1px solid #f0f2f4; padding-top: 24px;
+}
+@media (max-width: 600px) { .prof-stats { grid-template-columns: repeat(2, 1fr); } }
+.prof-stat { display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center; }
+.prof-stat__icon  { font-size: 1.6rem; }
+.prof-stat__value { font-size: 1.5rem; font-weight: 800; line-height: 1.1; }
+.prof-stat__label { font-size: 0.8rem; color: #888; font-weight: 600; }
+
+/* ── History Card ── */
+.prof-history-card {
+  background: #fff; border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07); padding: 28px 32px;
+  animation: cardIn 0.4s ease;
+}
+.prof-section-title { font-size: 1.15rem; font-weight: 800; color: #1a1a1a; margin-bottom: 20px; }
+.prof-empty { text-align: center; padding: 40px; color: #aaa; font-weight: 600; font-size: 0.95rem; }
+.prof-play-link { color: #3185FC; cursor: pointer; font-weight: 700; text-decoration: underline; }
+
+/* ── Table ── */
+.prof-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.prof-table__head { background: #f5f7fa; }
+.prof-th {
+  padding: 12px 12px; text-align: left; font-size: 0.78rem;
+  font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.04em;
+}
+.prof-th:nth-child(1) { width: 100px; }  /* Game */
+.prof-th:nth-child(2) { width: 95px;  }  /* Difficulty */
+.prof-th:nth-child(3) { width: 75px;  }  /* Score */
+.prof-th:nth-child(4) { width: 85px;  }  /* Time Used */
+.prof-th:nth-child(5) { width: 95px;  }  /* Date */
+.prof-th:nth-child(6) { width: 90px;  }  /* Status */
+.prof-th:nth-child(7) { width: auto;  }  /* Result */
+
+.prof-table__row {
+  border-bottom: 1px solid #f0f2f4;
+  animation: rowIn 0.3s ease both;
+  transition: background 0.15s;
+}
+.prof-table__row:last-child { border-bottom: none; }
+.prof-table__row:hover { background: #f8f9fa; }
+.prof-table__row--paused {
+  background: #f0f6ff !important;
+  border-left: 3px solid #3185FC;
+}
+.prof-table__row--paused:hover { background: #e8f0fe !important; }
+
+.prof-td { padding: 12px 12px; vertical-align: middle; font-size: 0.9rem; }
+.prof-game-name { font-weight: 800; font-size: 0.92rem; }
+
+.prof-diff-badge {
+  display: inline-block; padding: 3px 9px; border-radius: 12px;
+  font-size: 0.76rem; font-weight: 700; color: #fff; text-transform: capitalize;
+}
+.prof-diff-badge--easy   { background: #57A773; }
+.prof-diff-badge--medium { background: #3185FC; }
+.prof-diff-badge--hard   { background: #D16014; }
+
+.prof-score { font-weight: 800; color: #1a1a1a; }
+.prof-time  { color: #555; font-weight: 600; }
+.prof-date  { color: #aaa; font-weight: 600; font-size: 0.82rem; }
+
+/* ── Status badges ── */
+.prof-state-badge {
+  display: inline-block; padding: 3px 10px; border-radius: 12px;
+  font-size: 0.78rem; font-weight: 700;
+}
+.prof-state-badge--done { background: #e8f5e9; color: #57A773; }
+
+/* ── Resume button ── */
+.prof-resume-btn {
+  background: #3185FC; color: #fff; border: none; border-radius: 8px;
+  padding: 5px 12px; font-size: 0.8rem; font-weight: 700;
+  font-family: 'Nunito', sans-serif; cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s; white-space: nowrap;
+}
+.prof-resume-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+
+/* ── Result badges ── */
+.prof-result-badge {
+  display: inline-block; padding: 3px 10px; border-radius: 12px;
+  font-size: 0.78rem; font-weight: 700; white-space: nowrap;
+}
+.prof-result-badge--win     { background: #e8f5e9; color: #2e7d32; }
+.prof-result-badge--loss    { background: #fdecea; color: #c62828; }
+.prof-result-badge--pending { background: #fff8e1; color: #f57f17; }
+.prof-result-badge--neutral { color: #bbb; }
+
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes rowIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}

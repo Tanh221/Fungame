@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800&display=swap');
+
+/* ── Outer container: board LEFT, info RIGHT ── */
+.g2048-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 16px;
+  font-family: 'Nunito', sans-serif;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.g2048-left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.g2048-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+}
+
+/* ── Score bar ── */
+.g2048-scorebar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.g2048-score-box {
+  background: #bbada0;
+  border-radius: 6px;
+  padding: 8px 16px;
+  text-align: center;
+  min-width: 80px;
+}
+.g2048-score-box--best { background: #8f7a66; }
+
+.g2048-score-label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #eee4da;
+  letter-spacing: 0.08em;
+}
+.g2048-score-val {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.g2048-restart-btn {
+  background: #8f7a66; color: #f9f6f2; border: none;
+  border-radius: 6px; padding: 10px 16px;
+  font-size: 0.85rem; font-weight: 800;
+  font-family: 'Nunito', sans-serif; cursor: pointer;
+  transition: background 0.2s;
+}
+.g2048-restart-btn:hover { background: #7c6b5a; }
+
+.g2048-hint { font-size: 0.75rem; color: #999; font-weight: 600; }
+
+/* ── Board ── */
+.g2048-board {
+  position: relative;
+  background: #bbada0;
+  border-radius: 8px;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10px;
+  width: 340px;
+  height: 340px;
+}
+
+.g2048-cell-bg {
+  background: rgba(238,228,218,0.35);
+  border-radius: 4px;
+}
+
+/* ── Tiles ── */
+.g2048-tile {
+  position: absolute;
+  width: calc((340px - 50px) / 4);
+  height: calc((340px - 50px) / 4);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  transition: all 0.1s ease;
+  left: calc(10px + var(--c) * (calc((340px - 50px) / 4) + 10px));
+  top:  calc(10px + var(--r) * (calc((340px - 50px) / 4) + 10px));
+}
+
+.g2048-tile--filled { animation: tileAppear 0.15s ease; }
+.g2048-tile--win    { animation: tileWin 0.5s ease infinite alternate; }
+
+/* ── Overlays ── */
+.g2048-overlay {
+  position: absolute; inset: 0;
+  background: rgba(238,228,218,0.88);
+  border-radius: 8px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 12px; z-index: 10;
+  animation: fadeIn 0.3s ease;
+}
+.g2048-overlay--win { background: rgba(237,207,114,0.92); }
+
+.g2048-overlay h2 { font-size: 1.8rem; font-weight: 800; color: #776e65; }
+.g2048-overlay p  { font-size: 1rem; font-weight: 700; color: #776e65; }
+
+.g2048-overlay button,
+.g2048-overlay-btns button {
+  background: #8f7a66; color: #f9f6f2; border: none;
+  border-radius: 6px; padding: 10px 20px;
+  font-size: 0.9rem; font-weight: 800;
+  font-family: 'Nunito', sans-serif; cursor: pointer;
+  transition: background 0.2s;
+}
+.g2048-overlay button:hover { background: #7c6b5a; }
+.g2048-overlay-btns { display: flex; gap: 10px; }
+
+/* ── Mobile buttons ── */
+.g2048-mobile-btns { display: none; flex-direction: column; align-items: center; gap: 6px; margin-top: 8px; }
+.g2048-mobile-row  { display: flex; gap: 6px; }
+.g2048-mobile-btns button {
+  width: 52px; height: 52px; border: none; border-radius: 8px;
+  background: #bbada0; color: #fff; font-size: 1.2rem; font-weight: 800;
+  cursor: pointer; transition: background 0.15s;
+}
+.g2048-mobile-btns button:hover { background: #a89990; }
+
+@media (max-width: 500px) {
+  .g2048-mobile-btns { display: flex; }
+  .g2048-board { width: 280px; height: 280px; }
+  .g2048-tile {
+    width: calc((280px - 50px) / 4);
+    height: calc((280px - 50px) / 4);
+    left: calc(10px + var(--c) * (calc((280px - 50px) / 4) + 10px));
+    top:  calc(10px + var(--r) * (calc((280px - 50px) / 4) + 10px));
+  }
+}
+
+/* ── Info Panel ── */
+.g2048-info-panel {
+  width: 220px;
+  flex-shrink: 0;
+}
+
+.g2048-info-card {
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  background: #fff;
+}
+
+.g2048-info-header {
+  padding: 10px 16px;
+}
+
+.g2048-info-badge {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+
+.g2048-info-body {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.g2048-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.g2048-info-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.g2048-info-tiles {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #333;
+}
+
+.g2048-info-desc {
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.g2048-info-divider {
+  height: 1px;
+  background: #f0f0f0;
+  margin: 4px 0;
+}
+
+/* ── Difficulty comparison rows ── */
+.g2048-diff-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 8px;
+  border-radius: 6px;
+  background: transparent;
+  transition: background 0.15s;
+}
+
+.g2048-diff-row--active {
+  background: #f8f9fa;
+}
+
+.g2048-diff-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.g2048-diff-name {
+  font-size: 0.82rem;
+  font-weight: 800;
+  min-width: 52px;
+}
+
+.g2048-diff-tiles {
+  font-size: 0.78rem;
+  color: #888;
+  font-weight: 600;
+}
+
+/* ── Animations ── */
+@keyframes tileAppear {
+  from { transform: scale(0); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+@keyframes tileWin {
+  from { box-shadow: 0 0 0 0 rgba(237,194,46,0.6); }
+  to   { box-shadow: 0 0 20px 8px rgba(237,194,46,0.6); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}

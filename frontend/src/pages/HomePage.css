@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  background: #F7F9F9;
+}
+
+/* ── Page ── */
+.home-bg {
+  min-height: 100vh;
+  background: #F7F9F9;
+}
+
+.home-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* ── Welcome ── */
+.home-welcome {
+  text-align: center;
+  margin-bottom: 40px;
+  animation: fadeDown 0.4s ease;
+}
+
+.home-welcome h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #1a1a1a;
+}
+
+.home-welcome p {
+  margin-top: 8px;
+  font-size: 1rem;
+  color: #777;
+  font-weight: 600;
+}
+
+/* ── Games Grid ── */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .games-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .games-grid { grid-template-columns: 1fr; }
+}
+
+/* ── Game Card ── */
+.game-card {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  padding: 36px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  animation: cardIn 0.4s ease both;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+}
+
+.game-card__emoji {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.game-card__name {
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.game-card__btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  margin-top: 8px;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.game-card__btn:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+/* ── Modal ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 36px 40px;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  animation: cardIn 0.25s ease;
+}
+
+.modal-game-emoji {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.modal-game-name {
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.modal-subtitle {
+  font-size: 0.92rem;
+  color: #888;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.modal-options {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.modal-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.1s;
+}
+
+.modal-btn:hover:not(:disabled) {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.modal-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.modal-cancel {
+  width: 100%;
+  padding: 13px;
+  border: 1.5px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+  color: #555;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: background 0.2s;
+}
+
+.modal-cancel:hover { background: #f5f5f5; }
+
+/* ── Animations ── */
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0);     }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
